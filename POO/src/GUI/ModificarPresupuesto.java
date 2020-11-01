@@ -276,7 +276,7 @@ public class ModificarPresupuesto extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         modificarPresupuesto();
           dispose();
-            volverInicio();
+            volverInicio(); 
     }//GEN-LAST:event_jButton1ActionPerformed
     public void cargarid() {
         try {
@@ -362,7 +362,10 @@ public class ModificarPresupuesto extends javax.swing.JFrame {
         ArrayList<Integer> ListaBaja = new ArrayList<Integer>();
 
         int idPersona = Integer.parseInt((String) cmbIdPersona.getSelectedItem());
-        Presupuesto usu = new Presupuesto(idPersona);
+         int id = idPersona;
+         Persona p = new Persona(id);
+           
+        Presupuesto usu = new Presupuesto(p);
         //usuarios = procesos.extraerIngreso(usu);
         int cantidad = 0;
         int cantidadpor = 0;

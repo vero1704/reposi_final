@@ -208,7 +208,7 @@ public class Datos {
 
     public void EliminarFamilia(Familia familias) {
         try (Connection connection = Conexion.getConexion()) {
-            String sql = "delete  from persona where id = ?";
+            String sql = "delete  from familia where apellido = ?";
 
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, familias.getApellido());
@@ -231,11 +231,16 @@ public class Datos {
 
     public void modificarFamilia(Familia familias) {
         try (Connection connection = Conexion.getConexion()) {
-            String sql = "UPDATE persona\n"
-                    + "	SET  apellido=?";
+            String sql = "UPDATE public.familia\n" +
+"	SET   provincia=?, canton=?, distrito=?, direccion=?\n" +
+"	WHERE apellido=?";
 
             PreparedStatement p = connection.prepareStatement(sql);
-            p.setString(1, familias.getApellido());
+            p.setString(1, familias.ubicacion.getProvincia());
+            p.setString(2, familias.ubicacion.getCanton());
+             p.setString(3, familias.ubicacion.getDistrito());
+              p.setString(4, familias.ubicacion.getDireccionExacta());
+               p.setString(5, familias.getApellido());
 
             int res = p.executeUpdate();
 
@@ -255,11 +260,19 @@ public class Datos {
 
     public void modificarPresupuesto(Presupuesto presupuestos) {
         try (Connection connection = Conexion.getConexion()) {
-            String sql = "UPDATE persona\n"
-                    + "	SET  apellido=?";
+            String sql = "UPDATE public.presupuesto\n" +
+"	SET  anno=?, mes=?, semana=?, tipo=?, clasificacion=?, monto=?, descripcion=?\n" +
+"	WHERE idpersona=?";
 
             PreparedStatement p = connection.prepareStatement(sql);
-            p.setInt(1, presupuestos.idPersona.getId());
+                     p.setInt(1, presupuestos.getAnno());
+                    p.setString(2, presupuestos.getMes());
+                    p.setString(3, presupuestos.getSemana());
+                    p.setString(4, presupuestos.getTipo());
+                    p.setString(5, presupuestos.getClasificacion());
+                    p.setInt(6, presupuestos.getMonto());
+                     p.setString(7, presupuestos.getDescripcion());
+                  p.setInt(8, presupuestos.idPersona.getId());
 
             int res = p.executeUpdate();
 
@@ -331,7 +344,7 @@ public class Datos {
         ArrayList<Presupuesto> presupuesto = new ArrayList<>();
 
         try (Connection connection = Conexion.getConexion()) {
-            String sql = "select monto from presupuesto where idpersona = ? and tipo = 'Egreso'";
+            String sql = "select sum(monto) from presupuesto where idpersona = ? and tipo = 'Egreso'";
 
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, persona.idPersona.getId());
@@ -486,7 +499,7 @@ public class Datos {
 
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, presupuestos.idPersona.getId());
-            p.setInt(7, presupuestos.getMonto());
+            p.setInt(2, presupuestos.getMonto());
 
             int res = p.executeUpdate();
 

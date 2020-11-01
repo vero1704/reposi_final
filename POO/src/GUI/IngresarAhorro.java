@@ -148,9 +148,12 @@ public class IngresarAhorro extends javax.swing.JFrame {
        if(monto> calculo && monto > 0){
            JOptionPane.showMessageDialog(rootPane,"El monto excede el limite");
        }else{
-          personas.id = cedulas;
-           Presupuesto ahorros = new Presupuesto(personas.id, monto);
-        Presupuesto usu = new Presupuesto(personas.id);
+           
+           
+           int id  = cedulas;
+           Persona p = new Persona(id);
+           Presupuesto ahorros = new Presupuesto(p, monto);
+        Presupuesto usu = new Presupuesto(p);
         usuarios = procesos.extraerEgreso(usu);
         
         
@@ -214,7 +217,8 @@ public class IngresarAhorro extends javax.swing.JFrame {
     public int ingresoPorPersona(){
         int ingreso = 0;
         int id = cedulas;
-        Presupuesto usu = new Presupuesto(id);
+           Persona p = new Persona(id);
+           Presupuesto usu = new Presupuesto(p);
         usuarios = procesos.extraerIngreso(usu);         
         
         
@@ -229,8 +233,9 @@ public class IngresarAhorro extends javax.swing.JFrame {
     
      public int EgresoPorPersona(){
         int egreso = 0;
-        personas.id = cedulas;
-        Presupuesto usu = new Presupuesto(personas.id);
+        int id = cedulas;
+         Persona p = new Persona(id);
+           Presupuesto usu = new Presupuesto(p);
         usuarios = procesos.extraerEgreso(usu);
         
         

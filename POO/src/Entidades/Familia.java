@@ -7,7 +7,6 @@ package Entidades;
 public class Familia {
     public String Apellido;
     public Ubicacion ubicacion;
-    public int presupuesto;
 
     public Familia(String Apellido, Ubicacion ubicacion) {
         this.Apellido = Apellido;
@@ -18,10 +17,8 @@ public class Familia {
     }
 
     public Familia(String Apellido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.Apellido = Apellido;
     }
-    
-    
 
     public String getApellido() {
         return Apellido;

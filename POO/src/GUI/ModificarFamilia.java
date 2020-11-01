@@ -6,6 +6,7 @@
 package GUI;
 
 import Entidades.Familia;
+import Entidades.Ubicacion;
 import Negocios.Metodos;
 import java.util.ArrayList;
 
@@ -60,6 +61,11 @@ public class ModificarFamilia extends javax.swing.JFrame {
         cmbProvincia.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbProvinciaItemStateChanged(evt);
+            }
+        });
+        cmbProvincia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProvinciaActionPerformed(evt);
             }
         });
 
@@ -687,6 +693,10 @@ public class ModificarFamilia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bntGuardarFamiliaActionPerformed
 
+    private void cmbProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProvinciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProvinciaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -731,8 +741,14 @@ public class ModificarFamilia extends javax.swing.JFrame {
 
     public void modificarFamilia() {
         String Apellido = (String) cmbFamilia.getSelectedItem();
+        String provincia = (String) cmbProvincia.getSelectedItem();
+        String canton = (String) cmbCantón.getSelectedItem();
+        String distrito = (String) cmbDistrito.getSelectedItem();
+        String direccion = txtDireccion.getText();
+        
+         Ubicacion ubicacion = new Ubicacion(provincia, canton, distrito, direccion);
 
-        Familia familias = new Familia(Apellido);
+        Familia familias = new Familia(Apellido, ubicacion);
         procesos.modificarFamilia(familias);
     }
     

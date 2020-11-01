@@ -296,6 +296,7 @@ public class RegistrarPresupuesto extends javax.swing.JFrame {
         // TODO add your handling code here:
         lbEstado.setText("");
         try {
+            registrarPresupuesto();
            dispose();
             volverInico();
             

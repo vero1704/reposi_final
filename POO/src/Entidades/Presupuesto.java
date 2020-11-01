@@ -34,13 +34,6 @@ public class Presupuesto {
         this.monto = monto;
     }
 
-    public Presupuesto(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Presupuesto(int id, int monto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public Persona getIdPersona() {
         return idPersona;
