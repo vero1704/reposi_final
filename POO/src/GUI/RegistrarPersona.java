@@ -4,6 +4,7 @@ import Entidades.Familia;
 import Entidades.Persona;
 import Negocios.Metodos;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -132,7 +133,7 @@ public class RegistrarPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addGap(37, 37, 37)
+                        .addGap(35, 35, 35)
                         .addComponent(btnSalir))
                     .addComponent(txtEdad)
                     .addComponent(cmbGenero, 0, 208, Short.MAX_VALUE)
@@ -156,7 +157,7 @@ public class RegistrarPersona extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,8 +201,8 @@ public class RegistrarPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnSalir))
-                .addGap(18, 18, 18)
-                .addComponent(lbEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -213,10 +214,7 @@ public class RegistrarPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Inicio ventana = new Inicio(this,true);
-        ventana.pack();
-        setVisible(false);
-        ventana.setVisible(true);
+        volverInicio();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void cmbFamiliaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFamiliaItemStateChanged
@@ -227,7 +225,8 @@ public class RegistrarPersona extends javax.swing.JFrame {
         lbEstado.setText("");
         try {
             registrarPersona();
-            dispose();
+             dispose();
+            volverInicio();
         } catch (RuntimeException ex) {
             lbEstado.setText("Llene los datos correctamente");
         } catch (Exception ex) {
@@ -242,9 +241,19 @@ public class RegistrarPersona extends javax.swing.JFrame {
     public void cargarFamilias() {
         try {
             ArrayList<Familia> usuarios = procesos.mostrarReporte();
-            for (Familia temp : usuarios) {
+            if(usuarios.size() == 0){
+                    JOptionPane.showMessageDialog(rootPane,"Debe de registrar primero a una familia");
+                    volverInicio();
+                    RegistrarPersona dialog = new RegistrarPersona(new javax.swing.JFrame(), false);
+                  
+                } 
+            
+            else{
+            for (Familia temp : usuarios) {  
                 cmbFamilia.addItem(temp.getApellido());
             }
+            }
+            
         } catch (Exception e) {
             e.printStackTrace(); 
         }
@@ -303,6 +312,13 @@ public class RegistrarPersona extends javax.swing.JFrame {
         Persona personas = new Persona(id, nombre, familia, edad, genero, escolaridad, trabajo);
         procesos.guardarPersona(personas);
    }
+    
+    public void volverInicio(){
+         Inicio ventana = new Inicio(this,true);
+        ventana.pack();
+        setVisible(false);
+        ventana.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;

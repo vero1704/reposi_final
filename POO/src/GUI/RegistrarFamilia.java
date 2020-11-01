@@ -659,10 +659,7 @@ public class RegistrarFamilia extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbProvinciaItemStateChanged
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Inicio ventana = new Inicio(this,true);
-        ventana.pack();
-        setVisible(false);
-        ventana.setVisible(true);
+        volverInicio();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void bntGuardarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGuardarFamiliaActionPerformed
@@ -670,6 +667,7 @@ public class RegistrarFamilia extends javax.swing.JFrame {
         try {
             registrarFamilia();
             dispose();
+            volverInicio();
         } catch (RuntimeException ex) {
             lbEstado.setText("Llene los datos correctamente");
         } catch (Exception ex) {
@@ -678,6 +676,12 @@ public class RegistrarFamilia extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bntGuardarFamiliaActionPerformed
 
+    public void volverInicio(){
+         Inicio ventana = new Inicio(this,true);
+        ventana.pack();
+        setVisible(false);
+        ventana.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */

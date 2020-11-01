@@ -268,9 +268,7 @@ public class RegistrarPresupuesto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnSalirInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirInicioActionPerformed
-        Inicio ventana = new Inicio(this, true);
-
-        ventana.setVisible(true);
+      volverInico();
     }//GEN-LAST:event_btnSalirInicioActionPerformed
 
     private void cmbClasificacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbClasificacionItemStateChanged
@@ -298,8 +296,9 @@ public class RegistrarPresupuesto extends javax.swing.JFrame {
         // TODO add your handling code here:
         lbEstado.setText("");
         try {
-            registrarPresupuesto();
-            dispose();
+           dispose();
+            volverInico();
+            
         } catch (RuntimeException ex) {
             lbEstado.setText("Llene los datos correctamente");
         } catch (Exception ex) {
@@ -330,6 +329,12 @@ public class RegistrarPresupuesto extends javax.swing.JFrame {
         }
     }
 
+    public void volverInico(){
+         Inicio ventana = new Inicio(this,true);
+        ventana.pack();
+        setVisible(false);
+        ventana.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */

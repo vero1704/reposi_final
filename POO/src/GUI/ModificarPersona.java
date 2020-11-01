@@ -51,8 +51,8 @@ public class ModificarPersona extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnGuardar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnGuardar.setText("Modificar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -67,7 +67,7 @@ public class ModificarPersona extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Edad:");
 
-        btnSalir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,7 +145,7 @@ public class ModificarPersona extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jLabel2)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -192,7 +192,8 @@ public class ModificarPersona extends javax.swing.JFrame {
         lbEstado.setText("");
         try {
             modificarPersona();
-            dispose();
+              dispose();
+            volverInicio();
         } catch (RuntimeException ex) {
             lbEstado.setText("Llene los datos correctamente");
         } catch (Exception ex) {
@@ -201,10 +202,7 @@ public class ModificarPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Inicio ventana = new Inicio(this,true);
-        ventana.pack();
-        setVisible(false);
-        ventana.setVisible(true);
+       volverInicio();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     public void cargarCedula() {
@@ -272,6 +270,12 @@ public class ModificarPersona extends javax.swing.JFrame {
 
         Persona personas = new Persona(id, nombre, edad, genero, escolaridad, trabajo);
         procesos.modificarPersona(personas);
+    }
+       public void volverInicio(){
+         Inicio ventana = new Inicio(this,true);
+        ventana.pack();
+        setVisible(false);
+        ventana.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -77,7 +77,7 @@ public class ModificarFamilia extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/family (1).png"))); // NOI18N
 
-        btnSalir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class ModificarFamilia extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Dirección:");
 
-        bntGuardarFamilia.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bntGuardarFamilia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         bntGuardarFamilia.setText("Guardar");
         bntGuardarFamilia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,13 +107,14 @@ public class ModificarFamilia extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(cmbFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cmbFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(20, 20, 20)
@@ -156,9 +157,9 @@ public class ModificarFamilia extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(72, 72, 72)
                 .addComponent(cmbFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addComponent(lbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -670,17 +671,15 @@ public class ModificarFamilia extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbCantónItemStateChanged
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Inicio ventana = new Inicio(this, true);
-        ventana.pack();
-        setVisible(false);
-        ventana.setVisible(true);
+       volverInicio();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void bntGuardarFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGuardarFamiliaActionPerformed
         lbEstado.setText("");
         try {
             modificarFamilia();
-            dispose();
+             dispose();
+            volverInicio();
         } catch (RuntimeException ex) {
             lbEstado.setText("Llene los datos correctamente");
         } catch (Exception ex) {
@@ -735,6 +734,13 @@ public class ModificarFamilia extends javax.swing.JFrame {
 
         Familia familias = new Familia(Apellido);
         procesos.modificarFamilia(familias);
+    }
+    
+       public void volverInicio(){
+         Inicio ventana = new Inicio(this,true);
+        ventana.pack();
+        setVisible(false);
+        ventana.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -73,6 +73,11 @@ public class IngresarAhorro extends javax.swing.JFrame {
         jlTitulo.setText("Monto para ahorrar");
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,14 +159,22 @@ public class IngresarAhorro extends javax.swing.JFrame {
        }
         if (ahorro == 0){
               procesos.actualizarAhorro(ahorros);
+                dispose();
+            volverInicio();
         }else{
                procesos.guardarAhorro(ahorros);
+                 dispose();
+            volverInicio();
         }
        
          
        }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+       volverInicio();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,7 +264,12 @@ public class IngresarAhorro extends javax.swing.JFrame {
        
         
      }
-
+   public void volverInicio(){
+         Inicio ventana = new Inicio(this,true);
+        ventana.pack();
+        setVisible(false);
+        ventana.setVisible(true);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
